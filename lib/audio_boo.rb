@@ -5,9 +5,10 @@ class AudioBoo
   
 
   #example AudioBoo.by_location({ "find[latitude]" => 51.633, "find[longitude]" => -0.064})
+  #example AudioBoo.by_location(51.633,-0.064)
   #http://api.audioboo.fm/audio_clips/located.json?latitude=51.633&longitude=-0.064
-  def self.by_location(params)
-    res = self.get("/audio_clips/located.json?#{params.to_query}")
+  def self.by_location(lat,lng)
+    res = self.get("/audio_clips/located.json?find[latitude]=#{lat}&find[longitude]=#{lng}")
     array = res["body"]["audio_clips"]
     generate_clips_array(array)
   end
@@ -42,7 +43,8 @@ class AudioBoo
     clip_data.delete("counts")
     clip_data.delete("location")
     #create clips and the subklasses for sources,tags,user
-    clip = Booyah::AudioClip.new(clip_data.symbolize_keys)
+    clip_data = clip_data.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+    clip = Booyah::AudioClip.new(clip_data)
     clip.sources = generate_sources(urls)
     clip.tags = generate_tags(tags)
     clip.user = generate_user(user)

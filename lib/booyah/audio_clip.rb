@@ -1,6 +1,6 @@
 module Booyah
   class AudioClip
-    PROPERTIES = [:duration, :title, :location,
+    PROPERTIES = [:id, :duration, :title, :location,
                   :recorded_at, :uploaded_at, :play_count,
                   :comment_count, :tags, :sources, :user]
     PROPERTIES.each { |p| attr_accessor p }
