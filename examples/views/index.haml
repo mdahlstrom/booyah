@@ -1,8 +1,11 @@
 %html
 	%head
 		%title My Sinatra Website
-		%body
-			%h1 Welcome
-			%p 
-				Welcome to my website made with Sinatra and HAML
+		%script{:rel => "javascript", :type => "text/javascript", :src => "https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"}
+		%script{:rel => "javascript", :type => "text/javascript", :src  => "/application.js"}
+		%link{:rel => "stylesheet", :type => "text/css", :href  => "/reset.css"}
+		%link{:rel => "stylesheet", :type => "text/css", :href  => "/application.css"}
+	%body
+		%nav
+		%section#main
 			= partial(:boo, :collection => @boos)

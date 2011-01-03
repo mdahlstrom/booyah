@@ -1,0 +1,20 @@
+section {
+	background-color:#aaa;
+}
+
+article {
+	opacity:0.0;
+	position:absolute;
+	background-color:#555;
+	width:300px;
+	-webkit-transition: opacity 3.0s ease;
+	-moz-transition: opacity 3.0s ease;
+	-webkit-transition: left,top 1.8s ease;
+	-moz-transition: left,top 1.8s ease;
+	header {
+		color:#aaa;
+		text-align:center;
+		padding:0.5em;
+		background-color:#111;
+	}
+}

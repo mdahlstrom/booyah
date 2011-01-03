@@ -17,15 +17,29 @@ module Sinatra::Partials
         false, :locals => {template_array[-1].to_sym => member}))
       end.join("\n")
     else
-      erb(:"#{template}", options)
+      haml(:"#{template}", options)
     end
   end
 end
 
 helpers Sinatra::Partials
 
+get '/application.css' do 
+    content_type 'text/css', :charset => 'utf-8'
+    scss :application
+end
+
+get '/reset.css' do 
+    content_type 'text/css', :charset => 'utf-8'
+    send_file('views/html5reset-1.6.1.css')
+end
+
+get '/application.js' do 
+    content_type 'text/javascript', :charset => 'utf-8'
+    send_file('views/application.js')
+end
+
 get '/' do
   @boos = AudioBoo.by_location(51.633,-0.064)
-  puts @boos.last.inspect
   haml :index 
 end
